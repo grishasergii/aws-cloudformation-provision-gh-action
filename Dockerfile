@@ -14,6 +14,6 @@ RUN pip install pipenv
 WORKDIR /action
 
 COPY . .
-RUN pipenv sync
+RUN pipenv sync --system
 
 ENTRYPOINT pipenv run python ../../action/action/provision.py
