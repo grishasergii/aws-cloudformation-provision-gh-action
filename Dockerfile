@@ -15,5 +15,6 @@ WORKDIR /action
 
 COPY . .
 RUN pipenv sync --system
+RUN python -m pip install -e .
 
 ENTRYPOINT python ../../action/action/provision.py
