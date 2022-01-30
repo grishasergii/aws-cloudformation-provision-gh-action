@@ -12,6 +12,9 @@ from action.package import package
 @click.option("--artifacts-bucket", help="S3 bucket for artifacts")
 @click.option("--cfn-bucket", help="S3 bucket for cfn templates")
 def provision(stack_name, path, main_template, branch, artifacts_bucket, cfn_bucket):
+    if not artifacts_bucket or not cfn_bucket:
+        raise ValueError("artifacts and cfn bucket names must be set")
+
     click.echo(f"{'='*15} Package {'='*15}")
     package(stack_name, path, main_template, branch, artifacts_bucket, cfn_bucket)
 
