@@ -11,9 +11,9 @@ RUN ./aws/install
 RUN pip install --upgrade pip
 RUN pip install pipenv
 
-WORKDIR /github/workspace
+WORKDIR /action
 
 COPY . .
 RUN pipenv sync
 
-ENTRYPOINT pipenv run python action/provision.py
+ENTRYPOINT pipenv run python ../../action/action/provision.py
