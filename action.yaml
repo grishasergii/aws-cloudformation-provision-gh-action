@@ -1,0 +1,27 @@
+name: AWS cloudformation provision
+description: Package and then deploy cloudformation templates
+inputs:
+  stack-name:
+    description: Stack name
+    required: true
+  path:
+    description: Path to the folder with CFN templates to package
+    required: true
+  main-template:
+    description: Name of the main template file
+    required: true
+  branch:
+    description: Branch name, for example main, test, etc
+    required: true
+  artifacts-bucket:
+    description: S3 bucket for artifacts
+    required: true
+  cfn-bucket:
+    description: S3 bucket for cfn templates
+    required: true
+outputs:
+  stack-id:
+    description: Id of the cloudformation stack
+runs:
+  using: docker
+  image: Dockerfile
