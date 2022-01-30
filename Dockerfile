@@ -16,4 +16,4 @@ WORKDIR /action
 COPY . .
 RUN pipenv sync --system
 
-ENTRYPOINT pipenv run python ../../action/action/provision.py
+ENTRYPOINT python ../../action/action/provision.py
