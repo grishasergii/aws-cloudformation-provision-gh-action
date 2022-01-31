@@ -1,3 +1,5 @@
+import os
+
 import click
 
 from action.deploy import deploy
@@ -16,7 +18,7 @@ def provision(stack_name, path, main_template, branch, artifacts_bucket, cfn_buc
     package(stack_name, path, main_template, branch, artifacts_bucket, cfn_bucket)
 
     click.echo(f"{'=' * 15} Deploy {'=' * 15}")
-    stack_id = deploy(main_template, stack_name, branch)
+    stack_id = deploy(os.path.join(path, main_template), stack_name, branch)
     click.echo(f"::set-output name=stack_id::{stack_id}")
 
 
