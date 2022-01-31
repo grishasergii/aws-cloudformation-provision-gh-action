@@ -20,9 +20,10 @@ def _stack_exists(stack_name):
     return False
 
 
-def deploy(template_file, stack_name, branch):
+def deploy(template_file, stack_name, branch, cfn_bucket_name, aws_region):
     stack_name = f"{stack_name}-{branch}"
     click.echo(f"Provisioning {stack_name}")
+    cf_bucket_url = f"https://{cfn_bucket_name}.s3.{aws_region}.amazonaws.com"
     if _stack_exists(stack_name):
         click.echo(f"Stack '{stack_name}' already exists. Will update")
         result = ExternalCmd.run_and_parse_json(
@@ -30,6 +31,7 @@ def deploy(template_file, stack_name, branch):
             f"--stack-name {stack_name} "
             f"--template-body file://{template_file} "
             f"--parameters ParameterKey=Branch,ParameterValue={branch} "
+            f"--parameters ParameterKey=CfnBucketUrl,ParameterValue={cf_bucket_url} "
             "--tags file://tags.json "
             "--capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND"
         )
@@ -45,6 +47,7 @@ def deploy(template_file, stack_name, branch):
             f"--stack-name {stack_name} "
             f"--template-body file://{template_file} "
             f"--parameters ParameterKey=Branch,ParameterValue={branch} "
+            f"--parameters ParameterKey=CfnBucketUrl,ParameterValue={cf_bucket_url} "
             "--tags file://tags.json "
             "--capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND"
         )

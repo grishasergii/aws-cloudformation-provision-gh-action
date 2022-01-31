@@ -19,6 +19,9 @@ inputs:
   cfn_bucket:
     description: S3 bucket for cfn templates
     required: true
+  cfn_aws_region:
+    description: AWS region where cfn_bucket is located
+    required: true
 outputs:
   stack_id:
     description: Id of the cloudformation stack

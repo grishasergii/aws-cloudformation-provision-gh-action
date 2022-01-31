@@ -13,12 +13,13 @@ from action.package import package
 @click.option("--branch", help="Branch name", required=True)
 @click.option("--artifacts-bucket", help="S3 bucket for artifacts", required=True)
 @click.option("--cfn-bucket", help="S3 bucket for cfn templates", required=True)
-def provision(stack_name, path, main_template, branch, artifacts_bucket, cfn_bucket):
+@click.option("--cfn-aws-region", help="AWs region where S3 bucket for cfn templates is located", required=True)
+def provision(stack_name, path, main_template, branch, artifacts_bucket, cfn_bucket, cfn_aws_region):
     click.echo(f"{'='*15} Package {'='*15}")
     package(stack_name, path, main_template, branch, artifacts_bucket, cfn_bucket)
 
     click.echo(f"{'=' * 15} Deploy {'=' * 15}")
-    stack_id = deploy(os.path.join(path, main_template), stack_name, branch)
+    stack_id = deploy(os.path.join(path, main_template), stack_name, branch, cfn_bucket, cfn_aws_region)
     click.echo(f"::set-output name=stack_id::{stack_id}")
 
 
