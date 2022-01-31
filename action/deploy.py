@@ -31,7 +31,7 @@ def deploy(template_file, stack_name, branch, cfn_bucket_name, aws_region):
             f"--stack-name {stack_name} "
             f"--template-body file://{template_file} "
             f"--parameters ParameterKey=Branch,ParameterValue={branch} "
-            f"--parameters ParameterKey=CfnBucketUrl,ParameterValue={cf_bucket_url} "
+            f"ParameterKey=CfnBucketUrl,ParameterValue={cf_bucket_url} "
             "--tags file://tags.json "
             "--capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND"
         )
@@ -47,7 +47,7 @@ def deploy(template_file, stack_name, branch, cfn_bucket_name, aws_region):
             f"--stack-name {stack_name} "
             f"--template-body file://{template_file} "
             f"--parameters ParameterKey=Branch,ParameterValue={branch} "
-            f"--parameters ParameterKey=CfnBucketUrl,ParameterValue={cf_bucket_url} "
+            f"ParameterKey=CfnBucketUrl,ParameterValue={cf_bucket_url} "
             "--tags file://tags.json "
             "--capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND"
         )
