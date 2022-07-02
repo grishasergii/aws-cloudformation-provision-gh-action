@@ -21,7 +21,7 @@ def _stack_exists(stack_name):
 
 
 def deploy(template_file, stack_name, branch, environment, cfn_bucket_name, aws_region):
-    stack_name = f"{stack_name}-{branch}-{environment}"
+    stack_name = f"{stack_name}-{environment}-{branch}"
     click.echo(f"Provisioning {stack_name}")
     cf_bucket_url = f"https://{cfn_bucket_name}.s3.{aws_region}.amazonaws.com"
     if _stack_exists(stack_name):
