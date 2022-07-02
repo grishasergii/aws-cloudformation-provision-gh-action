@@ -13,6 +13,9 @@ inputs:
   branch:
     description: Branch name, for example main, test, etc
     required: true
+  environment:
+    description: Environment name
+    required: true
   artifacts_bucket:
     description: S3 bucket for artifacts
     required: true

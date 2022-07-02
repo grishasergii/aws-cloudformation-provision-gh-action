@@ -11,12 +11,13 @@ from action.package import package
 @click.option("--path", help="Path to the folder with CFN templates to package", required=True)
 @click.option("--main-template", help="Name of the main template file", required=True)
 @click.option("--branch", help="Branch name", required=True)
+@click.option("--environment", help="Environment name", required=True)
 @click.option("--artifacts-bucket", help="S3 bucket for artifacts", required=True)
 @click.option("--cfn-bucket", help="S3 bucket for cfn templates", required=True)
 @click.option("--cfn-aws-region", help="AWs region where S3 bucket for cfn templates is located", required=True)
-def provision(stack_name, path, main_template, branch, artifacts_bucket, cfn_bucket, cfn_aws_region):
+def provision(stack_name, path, main_template, branch, environment, artifacts_bucket, cfn_bucket, cfn_aws_region):
     click.echo(f"{'='*15} Package {'='*15}")
-    package(stack_name, path, main_template, branch, artifacts_bucket, cfn_bucket)
+    package(stack_name, path, main_template, branch, environment, artifacts_bucket, cfn_bucket)
 
     click.echo(f"{'=' * 15} Deploy {'=' * 15}")
     stack_id = deploy(os.path.join(path, main_template), stack_name, branch, cfn_bucket, cfn_aws_region)
