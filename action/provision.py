@@ -20,7 +20,7 @@ def provision(stack_name, path, main_template, branch, environment, artifacts_bu
     package(stack_name, path, main_template, branch, environment, artifacts_bucket, cfn_bucket)
 
     click.echo(f"{'=' * 15} Deploy {'=' * 15}")
-    stack_id = deploy(os.path.join(path, main_template), stack_name, branch, cfn_bucket, cfn_aws_region)
+    stack_id = deploy(os.path.join(path, main_template), stack_name, branch, environment, cfn_bucket, cfn_aws_region)
     click.echo(f"::set-output name=stack_id::{stack_id}")
 
 
