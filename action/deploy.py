@@ -48,6 +48,7 @@ def deploy(template_file, stack_name, branch, environment, cfn_bucket_name, aws_
             f"--stack-name {stack_name} "
             f"--template-body file://{template_file} "
             f"--parameters ParameterKey=Branch,ParameterValue={branch} "
+            f"ParameterKey=Environment,ParameterValue={environment} "
             f"ParameterKey=CfnBucketUrl,ParameterValue={cf_bucket_url} "
             "--tags file://tags.json "
             "--capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND"
